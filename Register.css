@@ -213,3 +213,7 @@ input{
         padding:5px;
     }
 }
+.hero-btn{
+    text-decoration: none;
+    text-align: center;
+}
