@@ -76,7 +76,7 @@ main {
 }
 
 .box {
-    width: 500px;
+    width: 200px;
     padding-top: 15%;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -436,6 +436,11 @@ main {
     text-align: center;
     color: black;
 }
+
+
+
+
+
     @media (max-width:500px) {
         .footer-menu ul {
             display: flex;
