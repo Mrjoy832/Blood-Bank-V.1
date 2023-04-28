@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,8 +21,8 @@
                 <ul>
                     <li><a href="help.html" target="_blank"> Get Help</a></li>
                     <li><a href="donate.html">Donate</a></li>
-                    <li><a href="index.php#vol-sect" target="_blank">Volunteer</a></li>
-                    <li><a href="index.php#about-us" target="_blank">About Us</a></li>
+                    <li><a href="index.html#vol-sect" target="_blank">Volunteer</a></li>
+                    <li><a href="index.html#about-us" target="_blank">About Us</a></li>
                 </ul>
             </div>
         </nav>
@@ -31,18 +33,23 @@
             <h2>Connect with us & save lives
                 around your location</h2>
             <ul class="des">
-                <li class="steps"><span>1</span> Register🧍🏻</li>
-                <li class="steps"><span>2</span><a href="./priorChecking.html" style="text-decoration: none;">Post a Blood request🩸</a></li>
-                <li class="steps"><span>3</span> Donate Blood 🩸</li>
-                <li class="steps"><span>4</span><a href="Centre.html" target="_blank" class="btn"> Find Nearest Centre 📱 </a></li>
+                <form action="" method="POST">
+                <li class="steps"><input type="text" placeholder="Enter Hospital Name" name="HOSPITAL"></li>
+                <li class="steps"><input type="text" placeholder="Address" name="ADDRESS"></li>
+                <li class="steps"><input type="date" placeholder="Enter date " name="DATE"></li>
+                <li class="steps"><input type="time" placeholder="Enter Time" name="TIME"></li>
+                <li class="steps"><input type="number" placeholder="Enter Contact Number" name="PH"></li>
+                <li class="steps"><input type="text" placeholder="More Details" name="DETAILS"></li>
                 <!-- <li class="steps"><span>5</span> Forever Free 💲❌ </li>
                 <li class="steps"><span>6</span> Save a Life 🩸🧬</li> -->
                 <!-- <a href="Login.html" class="hero-btn btn" target="_blank">Login</a> -->
+                <div class="text-box">
+                    <button class="hero-btn" name="SUBMIT">ADD EVENT</button>
+                </div>
+            </form>
             </ul>
 
-            <div class="text-box">
-                <a href="Register.php" class="hero-btn" target="_blank">Register</a>
-            </div>
+            
         </div>
 
 
@@ -75,4 +82,30 @@
 
 </body>
 
-</html>
+<?php
+
+include 'connect.php';
+
+if(isset($_POST['SUBMIT'])){
+
+$Hospital= $_POST['HOSPITAL'];
+$Address= $_POST['ADDRESS'];
+$Date= $_POST['DATE'];
+$Time= $_POST['TIME'];
+$Ph= $_POST['PH'];
+$Details= $_POST['DETAILS'];
+
+
+//to insert into db
+$insert="insert into camptable(HospitalName,Address,Date,Time,Phone, Comments) values ('$Hospital', '$Address', '$Date', '$Time','$Ph','$Details')";
+
+$query=mysqli_query($conn,$insert);//connection come from connection.php's 16th line
+
+if($query){
+    header("Location: ./camptable.php");
+    
+}
+}
+
+
+?>

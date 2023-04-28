@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blood Donation Questionnaire</title>
+	<style>
+		body {
+			background: linear-gradient(to right, #ff6666, #ff9966, #ffcc66, #ffff66);
+			font-size: 1.5rem;
+			font-family: Arial, sans-serif;
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 2rem;
+			font-size: 3rem;
+			color: white;
+			text-shadow: 2px 2px 4px #000000;
+		}
+
+		form {
+			margin: 0 auto;
+			max-width: 700px;
+			background-color: rgba(255, 255, 255, 0.7);
+			padding: 2rem;
+			box-shadow: 2px 2px 4px #000000;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 0.5rem;
+			color: #333333;
+			font-weight: bold;
+		}
+
+		input[type="radio"] {
+			margin-right: 1rem;
+		}
+
+		button {
+			display: block;
+			margin-top: 2rem;
+			padding: 0.5rem 1rem;
+			background-color: #ff6666;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			font-size: 1.5rem;
+			cursor: pointer;
+			box-shadow: 2px 2px 4px #000000;
+		}
+
+		button:hover {
+			background-color: #ff4d4d;
+		}
+
+		.question {
+			margin-bottom: 1rem;
+		}
+
+		.question-number {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin-bottom: 0.5rem;
+			color: #333333;
+		}
+
+		.options {
+			display: flex;
+			align-items: center;
+		}
+
+		.options label {
+			margin-right: 1rem;
+		}
+        input[type="submit"] {
+			background-color: #ff4d4d;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			font-size: 16px;
+			font-weight: bold;
+			border-radius: 5px;
+			margin-top: 30px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		input[type="submit"]:hover {
+			background-color: #e60000;
+		}
+	</style>
+	
+		<!-- // JavaScript validation code goes here -->
+        <script>
+		function validateForm() {
+			// Get the values of the radio buttons
+			var cancer = document.querySelector('input[name="cancer"]:checked');
+			var hepatitis = document.querySelector('input[name="hepatitis"]:checked');
+			var hiv = document.querySelector('input[name="hiv"]:checked');
+			var malaria = document.querySelector('input[name="malaria"]:checked');
+			var sickle_cell = document.querySelector('input[name="sickle_cell"]:checked');
+			
+			// Check if all questions are answered
+			if (!cancer || !hepatitis || !hiv || !malaria || !sickle_cell) {
+				alert("Please answer all questions before submitting the form.");
+				return false;
+			}
+			
+			// Check if donor is eligible to donate blood
+			if (cancer.value === "yes" || hepatitis.value === "yes" || hiv.value === "yes" || malaria.value === "yes" || sickle_cell.value === "yes") {
+				alert("Sorry, you are not eligible to donate blood.");
+				return false;
+			}
+			
+			// If all checks pass, the form is valid
+			alert("Thank you for completing the questionnaire. You are eligible to donate blood.");
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h1><span class="emoji">&#128150;</span> Blood Donation Questionnaire <span class="emoji">&#128150;</span></h1>
+	<form onsubmit="return validateForm()">
+		<h2>Prior Diseases</h2>
+		<p>Have you ever had any of the following?</p>
+		<label for="cancer">Cancer:</label>
+		<input type="radio" id="cancer_yes" name="cancer" value="yes">
+		<label class="yes" for="cancer_yes">&#9989; Yes</label>
+		<input type="radio" id="cancer_no" name="cancer" value="no">
+		<label class="no" for="cancer_no">&#10060; No</label><br>
+
+		<label for="hepatitis">Hepatitis:</label>
+		<input type="radio" id="hepatitis_yes" name="hepatitis" value="yes">
+		<label class="yes" for="hepatitis_yes">&#9989; Yes</label>
+		<input type="radio" id="hepatitis_no" name="hepatitis" value="no">
+		<label class="no" for="hepatitis_no">&#10060; No</label><br>
+
+		<label for="hiv">HIV:</label>
+		<input type="radio" id="hiv_yes" name="hiv" value="yes">
+		<label class="yes" for="hiv_yes">&#9989; Yes</label>
+		<input type="radio" id="hiv_no" name="hiv" value="no">
+		<label class="no" for="hiv_no">&#10060; No</label><br>
+
+		<label for="malaria">Malaria:</label>
+		<input type="radio" id="malaria_yes" name="malaria" value="yes">
+		<label class="yes" for="malaria_yes">&#9989; Yes</label>
+		<input type="radio" id="malaria_no" name="malaria" value="no">
+		<label class="no" for="malaria_no">&#10060; No</label><br>
+
+
+		<label for="sickle_cell">Malaria:</label>
+		<input type="radio" id="sickle_cell_yes" name="sickle_cell" value="yes">
+		<label class="yes" for="sickle_cell_yes">&#9989; Yes</label>
+		<input type="radio" id="sickle_cell_no" name="sickle_cell" value="no">
+		<label class="no" for="sickle_cell_no">&#10060; No</label><br>
+
+        <input type="submit" value="Submit">
+
+        </form>
+    </body>
+        </html>
+

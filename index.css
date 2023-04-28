@@ -239,7 +239,9 @@ h1 {
   font-size: 30px;
   font-weight: 600;
 }
-
+h2{
+  font-size: 160px;
+}
 p {
   color: #777;
   font-size: 20px;
@@ -1322,4 +1324,6 @@ footer {
   clear: both;
   padding: 75px 0px;
   margin: 0px;
+
 }
+

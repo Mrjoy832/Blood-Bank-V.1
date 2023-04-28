@@ -1,3 +1,9 @@
+
+<?php
+
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,10 +38,10 @@
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
                     <li><a class="scroll" href="#about-us">About Us</a></li>
-                    <li><a class="scroll" href="#vol-sect">Admin</a></li>
+                    <li><a href="addCamp.php" target="_blank">Admin</a></li>
                     <li><a href="donate.html" target="_blank">Donate</a></li>
                     <li><a href="donate.html" target="_blank">Request</a></li>
-                    <li><a class="scroll" href="#camp-sect">Camps</a></li>
+                    <li><a target="_blank"  href="addCamp.php">Camps</a></li>
                     <li><a href="help.html" target="_blank">Get Help</a></li>
                 </ul>
             </div>
@@ -44,8 +50,11 @@
         <div class="text-box">
             <h1> Start </h1>
             <h1>Saving Lives </h1>
+            <br>
             <p>Become a donor or request for blood And help save lives ..</p>
-            <a href='Register.html' class="hero-btn" target="_blank">Register</a>
+            <a href='Register.php' class="hero-btn" target="_blank">Register</a>
+            <!-- To display dynamic name from login page  -->
+            <h2 style="color:red;font-size:32px;font-family:'Courier New', Courier, monospace;font-weight:bold;"> Welcome <?php echo " ".$_SESSION['NameToDisplay']." ";?> to the portal :)</h2>
         </div>
     </header>
 

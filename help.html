@@ -20,8 +20,8 @@
                 <ul>
                     <li><a href="help.html">Get Help</a></li>
                     <li><a href="donate.html">Donate</a></li>
-                    <li><a href="index.html#vol-sect">Volunteer</a></li>
-                    <li><a href="index.html#about-us">About Us</a></li>
+                    <li><a href="index.php#vol-sect">Volunteer</a></li>
+                    <li><a href="index.php#about-us">About Us</a></li>
                 </ul>
             </div>
         </nav>
@@ -35,11 +35,13 @@
                 <div class="left"></div>
                 <div class="right">
                     <h2>Connect with us </h2>
-                    <input type="text" class="field" placeholder="Your Name">
-                    <input type="text" class="field" placeholder="Your Email">
-                    <input type="text" class="field" placeholder="Phone">
-                    <textarea placeholder="Message" class="field"></textarea>
-                    <button class="btn">Send</button>
+                    <form action="help.php" method="POST">
+                    <input type="text" class="field" placeholder="Your Name" name="NAME">
+                    <input type="text" class="field" placeholder="Your Email" name="EMAIL">
+                    <input type="text" class="field" placeholder="Enter heading.." name="SUBJECT">
+                    <textarea placeholder="Message" class="field" name="BODY"></textarea>
+                    <button class="btn" name="REGISTER">Send</button>
+                </form>
                 </div>
             </div>
         </div>
@@ -74,3 +76,5 @@
 </body>
 
 </html>
+
+
