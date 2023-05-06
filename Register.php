@@ -103,7 +103,7 @@ if($emailCount>0){
     <?php
 }
 else{
-    if($pass1===$pass2){
+    if($pass1===$pass2){ 
       $insert1= "insert into usertable(Name, Email, Phone, DOB, Address, password, Confirmpassword) values('$name1','$email1','$mobile1','$dob','$address','$pass1_','$pass2_')";  
 $iquery=mysqli_query($conn, $insert1);
  if($iquery){

@@ -68,7 +68,7 @@ include 'connect.php';
     $pass1= $_POST['PASSWORD'];
 
     //check if the entered email is in db or not
-    $email_seacrh=" select * from usertable where Email= '$email1'";
+    $email_seacrh="select * from usertable where Email= '$email1'";
     $query=mysqli_query($conn, $email_seacrh);
 
     $email_count=mysqli_num_rows($query);

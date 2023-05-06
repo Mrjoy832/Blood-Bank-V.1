@@ -18,13 +18,13 @@ if(isset($_POST['REGISTER'])){
     $mail->isSMTP();
     $mail->Host= 'smtp.gmail.com';
     $mail->SMTPAuth =true;
-    $mail->Username='tridibbag24@gmail.com';
-    $mail->Password='xlyetrhxjhoafylp';
+    $mail->Username='bloodbank832@gmail.com';
+    $mail->Password='iumdptzzqwfwtkez';
     $mail->Port= 465;
     $mail->SMTPSecure='ssl';
     $mail->isHTML(true);
     $mail->setFrom($email1,$name1);
-    $mail->addAddress('tridibbag24@gmail.com');
+    $mail->addAddress('bloodbank832@gmail.com');
     $mail->Subject=("$email1 ($sub1)");
     $mail->Body= $body1;
     $mail->send();
