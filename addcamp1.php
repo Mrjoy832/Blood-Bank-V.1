@@ -1,5 +1,6 @@
 
 
+<script>alert('Update Your Camp Details\nAnd Submit Again..')</script>
 
 
 <!DOCTYPE html>
@@ -34,19 +35,59 @@
         <div class="box">
             <h2>Connect with us & save lives
                 around your location</h2>
+                <?php
+
+            include 'connect.php';
+            
+            $id = $_GET['id'];
+        $show="select * from camptable where ID='$id'";
+        $query2=mysqli_query($conn,$show);
+
+        $arr=mysqli_fetch_array($query2);
+
+            if(isset($_POST['SUBMIT'])){
+                $idUpdate=$_GET['id'];
+
+            $Hospital= $_POST['HOSPITAL'];
+            $Address= $_POST['ADDRESS'];
+            $Date= $_POST['DATE'];
+            $Time= $_POST['TIME'];
+            $Ph= $_POST['PH'];
+            $Details= $_POST['DETAILS'];
+
+
+            //to insert into db
+            // $insert="insert into camptable(HospitalName,Address,Date,Time,Phone, Comments) values ('$Hospital', '$Address', '$Date', '$Time','$Ph','$Details')";
+
+            //update DB
+            $update="update camptable set ID=$id, HospitalName='$Hospital', Address='$Address', Date='$Date', Time='$Time', Phone='$Ph', Comments='$Details' where 
+            ID=$idUpdate";
+            $query=mysqli_query($conn,$update);//connection come from connection.php's 16th line
+
+            if($query){
+            
+                header("Location: ./camptable1.php");
+                
+            }
+            }
+
+
+            ?>
             <ul class="des">
+                           
                 <form action="" method="POST">
-                <li class="steps"><input type="text" placeholder="Enter Hospital Name" name="HOSPITAL"></li>
-                <li class="steps"><input type="text" placeholder="Address" name="ADDRESS"></li>
-                <li class="steps"><input type="date" placeholder="Enter date " name="DATE"></li>
-                <li class="steps"><input type="time" placeholder="Enter Time" name="TIME"></li>
-                <li class="steps"><input type="number" placeholder="Enter Contact Number" name="PH"></li>
-                <li class="steps"><input type="text" placeholder="More Details" name="DETAILS"></li>
+                            
+                <li class="steps"><input type="text" placeholder="Enter Hospital Name" name="HOSPITAL" value="<?php echo $arr['HospitalName'];?>"></li>
+                <li class="steps"><input type="text" placeholder="Address" name="ADDRESS" value="<?php echo $arr['Address'];?>"></li>
+                <li class="steps"><input type="date" placeholder="Enter date " name="DATE" value="<?php echo $arr['Date'];?>"></li>
+                <li class="steps"><input type="time" placeholder="Enter Time" name="TIME" value="<?php echo $arr['Time'];?>"></li>
+                <li class="steps"><input type="number" placeholder="Enter Contact Number" name="PH" value="<?php echo $arr['Phone'];?>"></li>
+                <li class="steps"><input type="text" placeholder="More Details" name="DETAILS" value="<?php echo $arr['Comments'];?>"></li>
                 <!-- <li class="steps"><span>5</span> Forever Free 💲❌ </li>
                 <li class="steps"><span>6</span> Save a Life 🩸🧬</li> -->
                 <!-- <a href="Login.html" class="hero-btn btn" target="_blank">Login</a> -->
                 <div class="text-box">
-                    <button class="hero-btn" name="SUBMIT">ADD EVENT</button>
+                    <button class="hero-btn" name="SUBMIT">UPDATE EVENT</button>
                 </div>
             </form>
             </ul>
@@ -84,30 +125,3 @@
 
 </body>
 
-<?php
-
-include 'connect.php';
-
-if(isset($_POST['SUBMIT'])){
-
-$Hospital= $_POST['HOSPITAL'];
-$Address= $_POST['ADDRESS'];
-$Date= $_POST['DATE'];
-$Time= $_POST['TIME'];
-$Ph= $_POST['PH'];
-$Details= $_POST['DETAILS'];
-
-
-//to insert into db
-$insert="insert into camptable(HospitalName,Address,Date,Time,Phone, Comments) values ('$Hospital', '$Address', '$Date', '$Time','$Ph','$Details')";
-
-$query=mysqli_query($conn,$insert);//connection come from connection.php's 16th line
-
-if($query){
-    header("Location: ./camptable1.php");
-    
-}
-}
-
-
-?>

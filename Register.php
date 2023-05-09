@@ -1,3 +1,9 @@
+<?php
+ session_start();
+
+?>
+
+
 <script>alert("Hey.. First Register Yourself")</script>
 
 <!DOCTYPE html>
@@ -9,6 +15,8 @@
     <link rel="stylesheet" href='Register.css'>
     <link rel="icon" href='./Images/bb_logo(black).png' type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+      <!-- Add this line to set the zoom size to 80% -->
+      <style>body {zoom: 80%;}</style>
 </head>
 <title>Start Saving Lives </title>
 <body>
@@ -78,12 +86,20 @@ include 'connect.php';
 // REGISTER USER---------->
 if(isset($_POST['REGISTER'])){
     $name1= $_POST['NAME'];
+    $_SESSION['NAME']=$_POST['NAME'];
+
+    $_SESSION['PH']=$_POST['PH'];
     $mobile1= $_POST['PH'];
     
+    $_SESSION['EMAIL']=$_POST['EMAIL'];
     $email1= $_POST['EMAIL'];
     $pass1=$_POST['PASSWORD'];
     $pass2=$_POST['PASSWORD1'];
+
+    $_SESSION['ADDRESS']=$_POST['ADDRESS'];
     $address=$_POST['ADDRESS'];
+
+    $_SESSION['DOB']=$_POST['DOB'];
     $dob=$_POST['DOB'];
 
 

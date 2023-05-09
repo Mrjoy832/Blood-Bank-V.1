@@ -49,10 +49,13 @@ header {
   font-family: "Neuton", serif;
   line-height: 30px;
   margin-bottom: 10px;
+  /* margin-left: 50px; */
 }
 
 #logo > a > img {
   width: 70%;
+  
+  
 }
 
 #nav {

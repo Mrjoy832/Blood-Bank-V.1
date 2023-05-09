@@ -17,6 +17,8 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Add this line to set the zoom size to 80% -->
+    <!-- <style>body {zoom: 95%;}</style> -->
 </head>
 <title>BLOOD BANK</title>
 <div class="preloader">
@@ -38,7 +40,7 @@ session_start();
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
                     <li><a class="scroll" href="#about-us">About Us</a></li>
-                    <li><a href="addCamp.php" target="_blank">Admin</a></li>
+                    <li><a href="#vol-sect" target="">Admin</a></li>
                     <li><a href="donate.html" target="_blank">Donate</a></li>
                     <li><a href="donate.html" target="_blank">Request</a></li>
                     <li><a target="_blank"  href="addCamp.php">Camps</a></li>
@@ -54,7 +56,7 @@ session_start();
             <p>Become a donor or request for blood And help save lives ..</p>
             <a href='Register.php' class="hero-btn" target="_blank">Register</a>
             <!-- To display dynamic name from login page  -->
-            <h2 style="color:red;font-size:32px;font-family:'Courier New', Courier, monospace;font-weight:bold;"> Welcome <?php echo " ".$_SESSION['NameToDisplay']." ";?> to the portal :)</h2>
+            <h2 style="color:red;font-size:32px;font-family:'Courier New', Courier, monospace;font-weight:bold;">&nbsp;&nbsp; Welcome <?php echo " ".$_SESSION['NameToDisplay']." ";?> to the portal :)</h2>
         </div>
     </header>
 
@@ -233,12 +235,12 @@ session_start();
                 save lives.</p>
             <div class="socials">
                 <ul class="sci">
-                    <li><a href="https://www.facebook.com/givebloodnhs/" target="_blank"><i
+                    <li><a href="https://www.facebook.com/tridib.bag.96/" target="_blank"><i
                                 class="fab fa-facebook"></i></a>
                     </li>
-                    <li><a href="https://www.instagram.com/indiablooddonation/?hl=en" target="_blank"><i
+                    <li><a href="https://www.instagram.com/tridibbag56/" target="_blank"><i
                                 class="fab fa-instagram"></i></a></li>
-                    <li><a href="http://nbtc.naco.gov.in/" target="_blank"><i class="fas fa-globe"></i></a>
+                    <li><a href="https://github.com/Mrjoy832" target="_blank"><i class="fas fa-globe"></i></a>
                     </li>
                 </ul>
             </div>
