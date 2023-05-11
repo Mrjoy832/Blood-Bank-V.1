@@ -160,8 +160,8 @@ a {
 			
 			// If all checks pass, the form is valid
 			alert("Thank you for completing the questionnaire. You are eligible to donate blood.");
-			
-			return true;
+			window.location.href = "./testing.php";
+        return false;
 		}
 	</script>
 </body>

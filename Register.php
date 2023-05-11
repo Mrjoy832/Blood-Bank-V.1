@@ -65,7 +65,7 @@
             <div class="action-btn">
                 <button class="btn primary" name="REGISTER">Create Account</button>
                 
-                <a href="Login.php" class="hero-btn btn" target="_blank">Login</a>
+                <a href="Login.php" class="hero-btn btn" target="">Login</a>
             </div>
         </form>
     </div>
@@ -86,20 +86,20 @@ include 'connect.php';
 // REGISTER USER---------->
 if(isset($_POST['REGISTER'])){
     $name1= $_POST['NAME'];
-    $_SESSION['NAME']=$_POST['NAME'];
+    // $_SESSION['NAME']=$_POST['NAME'];
 
-    $_SESSION['PH']=$_POST['PH'];
+    // $_SESSION['PH']=$_POST['PH'];
     $mobile1= $_POST['PH'];
     
-    $_SESSION['EMAIL']=$_POST['EMAIL'];
+    // $_SESSION['EMAIL']=$_POST['EMAIL'];
     $email1= $_POST['EMAIL'];
     $pass1=$_POST['PASSWORD'];
     $pass2=$_POST['PASSWORD1'];
 
-    $_SESSION['ADDRESS']=$_POST['ADDRESS'];
+    // $_SESSION['ADDRESS']=$_POST['ADDRESS'];
     $address=$_POST['ADDRESS'];
 
-    $_SESSION['DOB']=$_POST['DOB'];
+    // $_SESSION['DOB']=$_POST['DOB'];
     $dob=$_POST['DOB'];
 
 
@@ -120,7 +120,7 @@ if($emailCount>0){
 }
 else{
     if($pass1===$pass2){ 
-      $insert1= "insert into usertable(Name, Email, Phone, DOB, Address, password, Confirmpassword) values('$name1','$email1','$mobile1','$dob','$address','$pass1_','$pass2_')";  
+      $insert1= "insert into usertable(Name, Email, Phone, DOB, Address, password, Confirmpassword,Usertype) values('$name1','$email1','$mobile1','$dob','$address','$pass1_','$pass2_','User')";  
 $iquery=mysqli_query($conn, $insert1);
  if($iquery){
     header("Location: ./login.php");

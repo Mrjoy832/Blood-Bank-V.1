@@ -2,7 +2,14 @@
 <?php
 
 session_start();
+$hospitalClicked = $_GET['hospital'];
+include 'connect.php';
+$search="select * from hospitallisttable where HospitalName='$hospitalClicked'";
+$query=mysqli_query($conn,$search);
+$nums=mysqli_num_rows($query);
 
+
+if($nums>0){
 ?>
 
 <!DOCTYPE html>
@@ -49,8 +56,10 @@ session_start();
 	</style>
 	<script>
 		function showPopup() {
-			var popup = window.open("priorCheck.php", "Popup", "width=800,height=650");
-			popup.focus();
+			// var popup = window.open("priorCheck.php", "Popup", "width=800,height=650");
+			// popup.focus();
+			window.top.location.replace('priorCheck.php');
+    window.close();
 		}
 
 		function openThirdPage() {
@@ -72,6 +81,7 @@ session_start();
 	<?php
 		if(isset($_GET['hospital']) && isset($_GET['address'])){
 			$hospital = $_GET['hospital'];
+			$_SESSION['clickedHospital']= $_GET['hospital'];
 			$address = $_GET['address'];
 			$_SESSION['HospitalName']=$_GET['hospital'];//storing in a session var so that we can use in any other file 
 			echo '<table>';
@@ -90,3 +100,12 @@ session_start();
 	?>
 </body>
 </html>
+<?php }
+
+else {
+	?>
+<script>alert('This Hospital is not under Our Service Model! \n Please Try Other one:)');</script>
+	<?php
+}
+?>
+	

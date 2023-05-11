@@ -3,6 +3,25 @@
 
 <!DOCTYPE html>
 <html>
+	<!-- styling for home button -->
+<style>
+  #home-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+</style>
+	<!-- Home button html -->
+	<button id="home-button" onclick="location.href='index.php';">Home</button>
+
+
 <head>
 	<title>Nearest Hospitals</title>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnptiv07O-LzdEkNjkYgg5gF32oLo0HKE&libraries=places"></script>
@@ -219,8 +238,10 @@ function showPopup(event, name, address) {
 	<style>
 		#map {
 			height: 500px;
-			width: 60%;
+			width: 58%;
 			float: right;
+			margin-right: 10px;
+			margin-top:20px;
   			
 		}
 
@@ -244,19 +265,89 @@ function showPopup(event, name, address) {
 		}
 
 		/*  */
-		
+		/* Style the search container */
+/* #search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+} */
+
+#search-container label {
+  margin-right: 10px;
+}
+
+#search-container input[type="text"] {
+  padding: 5px;
+  margin-right: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#search-container button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#search-container button:hover {
+  background-color: #0062cc;
+}
+
+/* Style the results container */
+/* Style the results container */
+#results {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none; /* remove the bullet points */
+}
+
+#results li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  transition: background-color 0.3s ease; /* add a smooth transition effect */
+}
+
+#results li:hover {
+  background-color: #c5c7c9; /* set the shadow color */
+}
+
+#results li a {
+  color: inherit; /* remove the link color */
+  text-decoration: none; /* remove the underline */
+}
+
+
+body{
+	background-color: #f0f7ff;
+}
 	</style>
 </head>
 <body onload="initMap()">
     <div id="search-container">
-        <label for="search-input">Search for Nearest Hospitals:</label>
-        <input type="text" id="search-input">
+	<label for="search-input" style="color: #1a0303; font-size: 18px; font-family:Arial, sans-serif;"><b>Search for Nearest Hospitals:</b></label>
+        <input type="text" id="search-input" placeholder="Enter Your Location..">
         <button onclick="searchHospitals()">Search</button>
     </div>
     
 	<ul id="results"></ul>
 	<div id="map"></div>
-    
+
+	<!-- disclaimer -->
+	<div style="font-size: 15px; text-align: center; margin-top: 50px; padding:10px;">
+    <p style="color:blue;"><b style="color:black;">**Disclaimer:</b> This website is for informational purposes only advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified healthcare provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this website.</p>
+</div>
+
 </body>
 </html>
 

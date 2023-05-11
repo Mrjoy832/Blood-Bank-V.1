@@ -52,6 +52,10 @@ session_start();
             <div class="action-btn">
                 <!-- <button class="btn primary">Create Account</button> -->
                 <button class="btn" name="SUBMIT">Login</button>
+                                <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;">Haven't Account?</span>
+                        <a href="register.php" style="font-size: 18px; color: #0d24ba; text-decoration: none; margin-left: 10px;"><b><u>Register</b></u></a>
+                               </div>
             </div>
         </form>
     </div>
@@ -81,10 +85,17 @@ include 'connect.php';
 
         // fetching username to display dynamic content in HomePage  
         $_SESSION['NameToDisplay']= $pass2['Name'];
+        $_SESSION['UserEmail']= $pass2['Email'];
+        $_SESSION['UserPhone']= $pass2['Phone'];
+        $_SESSION['userDOB']= $pass2['DOB'];
+        $_SESSION['userAddress']= $pass2['Address'];
 
-        if($passDecode){
+        if($passDecode and $pass2['UserType']=='User'){
            
           header("Location: ./index.php");
+        }
+        else if($passDecode and $pass2['UserType']=='Admin'){
+            header("Location: ./index-admin.php");
         }
         else{
             ?>

@@ -1,86 +1,98 @@
 
-<script>alert("Welcome to Upcoming Events..")</script>
+<!-- For Normal Users -->
 
-<!-- Now we need html to print the res in HTML table  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Blood Donation Camp Schedule</title>
     <style>
-        table,th,td{
-            border: 2px solid black;
+        body {
+            background-color: #ffe6e6; /* light pinkish background color */
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #cc0000;
+        }
+        table {
+            width: 100%;
             border-collapse: collapse;
-            padding:5px;
-            font-size:20px;
-            text-align:center;
+            border: 2px solid black;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #cc0000;
+            color: white;
+            font-weight: bold;
+        }
+        td:last-child {
+            text-align: center;
+        }
+        td:last-child button {
+            background-color: #cc0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        td:last-child button + button {
+            margin-left: 10px;
+        }
+        td:last-child button:hover {
+            background-color: #990000;
         }
     </style>
 </head>
 <body>
-    <div class="main-div">
+    <div class="container">
         <h1>Blood Donation Camp Schedule</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID No.</th>
+                    <th>Hospital Name</th>
+                    <th>Address</th>
+                    <th>Date</th>
+                    <th>Time</th> 
+                    <th>Phone</th> 
+                    <th>Comments</th> 
+                    <!-- <th colspan="2">Operation</th>  -->
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                include 'connect.php';
 
-        <div class="center-div">
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                           
-                           <th>Hospital Name</th>
-                           <th>Address</th>
-                           <th>Date</th>
-                           <th>Time</th> 
-                           <th>Phone</th> 
-                           <th>Comments</th> 
-                           <th colspan="2">Operation</th> 
-                        </tr>
-                    </thead>
-<!-- heading ends -->
+                $selectQuery = "SELECT * FROM camptable";
+                $query = mysqli_query($conn, $selectQuery);
+                $nums = mysqli_num_rows($query);
 
-<!-- body ebgins -->
-<tbody>
-
-<!---->
-
-<?php
-
-// This file is the webpage to show the table in diff webpage
-
-include 'connect.php';
-
-
-//showing table
-
-$selectQuery= " select * from camptable";
-
-$query = mysqli_query($conn, $selectQuery);////connection come from connection.php's 16th line
-//but the fetched  data is in array object form so to convert that into table form:
-$nums=mysqli_num_rows($query);
-
-while($res=mysqli_fetch_array($query)){
-  ?>  
-  
-    <tr>
-<td><?php echo $res['HospitalName']; ?></td>
-<td><?php echo $res['Address']; ?></td>
-<td><?php echo $res['Date']; ?></td>
-<td><?php echo $res['Time']; ?></td>
-<td><?php echo $res['Phone']; ?></td>
-<td><?php echo $res['Comments']; ?></td>
-<td>Edit</td>
-<td>Del</td>
-    </tr>
-
-    <?php
-}
-
-?>
-
-
-</tbody>
-</table>
-            </div>
-        </div>
+                while($res = mysqli_fetch_array($query)) {
+            ?>
+                <tr>
+                    <td><?php echo $res['ID']; ?></td>
+                    <td><?php echo $res['HospitalName']; ?></td>
+                    <td><?php echo $res['Address']; ?></td>
+                    <td><?php echo $res['Date']; ?></td>
+                    <td><?php echo $res['Time']; ?></td>
+                    <td><?php echo $res['Phone']; ?></td>
+                    <td><?php echo $res['Comments']; ?></td>
+                    
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

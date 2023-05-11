@@ -1,8 +1,77 @@
 <?php
-
-session_start();
+include 'navbar.php';
+// session_start();
+include 'connect.php';
 
 // echo($_SESSION['HospitalName']);
+$hospital=$_SESSION['HospitalName'];
+$stock_search=" select * from hospitallisttable where HospitalName= '$hospital'";
+$query=mysqli_query($conn, $stock_search);
+$stock=mysqli_fetch_assoc($query);
+
+$Apos=$stock['Stock-A+'];
+$Aneg=$stock['Stock-A-'];
+$Bpos=$stock['Stock-B+'];
+$Bneg=$stock['Stock-B-'];
+$ABpos=$stock['Stock-AB+'];
+$ABneg=$stock['Stock-AB-'];
+$Opos=$stock['Stock-O+'];
+$Oneg=$stock['Stock-O-'];
+
+if(isset($_POST['SUBMIT'])){
+	$blood_group = $_POST['blood_group'];
+	
+	switch($blood_group) {
+		case 'A+':
+		  $Apos +=1;
+		  break;
+		case 'A-':
+		  $Aneg +=1;
+		  break;
+		case 'B+':
+		  $Bpos +=1;
+		  break;
+		case 'B-':
+		  $Bneg +=1;
+		  break;
+		case 'AB+':
+		  $ABpos +=1;
+		  break;
+		case 'AB-':
+		  $ABneg +=1;
+		  break;
+		case 'O+':
+		  $Opos +=1;
+		  break;
+		case 'O-':
+		  $Oneg +=1;
+		  break;
+	  }
+
+	      // Update the database with the new stock values
+		  $update_query = "UPDATE hospitallisttable SET 
+		  `Stock-A+` = '$Apos', 
+		  `Stock-A-` = '$Aneg', 
+		  `Stock-B+` = '$Bpos', 
+		  `Stock-B-` = '$Bneg', 
+		  `Stock-AB+` = '$ABpos', 
+		  `Stock-AB-` = '$ABneg', 
+		  `Stock-O+` = '$Opos', 
+		  `Stock-O-` = '$Oneg' 
+		  WHERE HospitalName = '$hospital'";
+$query2=mysqli_query($conn, $update_query);
+
+if($query2){
+?>
+<script>alert("You are now a Successfull donar)");</script>
+<?php
+}
+else{
+?>
+<script>alert("incorrect Code:)");</script>
+<?php
+}
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +80,7 @@ session_start();
 	<title>Blood Donation Form</title>
 	<style>
 		body {
-			background-color: #f8f8f8;
+			background-color: #f2d8e9;
 			font-family: Arial, sans-serif;
 			color: #333;
 			font-size: 16px;
@@ -72,19 +141,19 @@ session_start();
 	<h1>Blood Donation Form</h1>
 	<form method="post" action="">
 		<label for="patient_name">Patient Name:</label>
-		<input type="text" name="patient_name" id="patient_name" required>
+		<input type="text" name="patient_name" id="patient_name" value=<?php echo $_SESSION['NameToDisplay'] ?> required>
 
 		<label for="email">Email:</label>
-		<input type="email" name="email" id="email" required>
+		<input type="email" name="email" id="email" value=<?php echo $_SESSION['UserEmail'] ?>  required>
 
 		<label for="phone">Phone:</label>
-		<input type="tel" name="phone" id="phone" required>
+		<input type="tel" name="phone" id="phone" value=<?php echo $_SESSION['UserPhone'] ?> required>
 
 		<label for="dob">Date of Birth:</label>
-		<input type="date" name="dob" id="dob" required>
+		<input type="date" name="dob" id="dob" value=<?php echo $_SESSION['userDOB'] ?> required>
 
 		<label for="address">Address:</label>
-		<textarea name="address" id="address" required></textarea>
+		<textarea name="address" id="address" value=<?php echo $_SESSION['userAddress'] ?> required></textarea>
 
 		<label for="blood_group">Blood Group:</label>
 		<select name="blood_group" id="blood_group" required>
@@ -109,7 +178,7 @@ session_start();
 </form>
 <style>
 body {
-  background-color: #F44336;
+  background-color: #f7e6f2;
 }
 
 form {
@@ -182,7 +251,7 @@ function hideAlert() {
 
 <?php
 
-include 'connect.php';
+
 require 'DonationMail.php';
 
 if(isset($_POST['SUBMIT'])){
@@ -198,7 +267,7 @@ $blood_group= $_POST['blood_group'];
 
 //if any condition required that will be considered later
 $insert1= "insert into bloodtransaction(PatientName,Email,Phone,Address,DOB,HospitalName, BloodGroup, TransactionType,Amount) values('$patientName', 
-'$email', '$phone', '$address', '$dob', '$hospitalName', '$blood_group', 'D', '0 ml') order by Time DESC";
+'$email', '$phone', '$address', '$dob', '$hospitalName', '$blood_group', 'D', '1 ml') order by Time ASC";
 
 $iquery=mysqli_query($conn, $insert1);
 

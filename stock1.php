@@ -325,20 +325,27 @@ require 'requestMail.php';
 
 if(isset($_POST['SUBMIT'])){
 
-$name="Joy";//later will take by session
-$email='tridib234@gmail.com';//later will take by session
-$phone=9876543261;//later will take by session
-$address='ktpp kolaghat new';//later will take by session
-$dob='2002-02-27';//later will take by session
+$name=$_SESSION['NameToDisplay'];//later will take by session
+$email=$_SESSION['UserEmail'];//later will take by session
+$phone=$_SESSION['UserPhone'];//later will take by session
+$address=$_SESSION['userAddress'];//later will take by session
+$dob=$_SESSION['userDOB'];//later will take by session
 $hospital;//already taken by session
 $blood_group;
 $amount;
 
-sendMail($name,$email,$phone,$address,$dob,$hospital,$blood_group,$amount);
-?>
-	<script>alert("Your request is approved")</script>
-	<?php
+$insert1= "insert into bloodtransaction(PatientName,Email,Phone,Address,DOB,HospitalName, BloodGroup, TransactionType,Amount) values('$name', 
+'$email', '$phone', '$address', '$dob', '$hospital', '$blood_group', 'R', '$amount') order by Time ASC";
 
+$iquery=mysqli_query($conn, $insert1);
+
+if($iquery){
+	// For both send mail and store data
+	sendMail($name,$email,$phone,$address,$dob,$hospital,$blood_group,$amount);
+	?>
+	<script>alert("Your Request is Approved...")</script>
+	<?php
+}
 
 
 }
