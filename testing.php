@@ -1,7 +1,19 @@
 <?php
-include 'navbar.php';
-// session_start();
+session_start();
 include 'connect.php';
+// include 'navbar.php';
+$hospital=$_SESSION['HospitalName'];
+
+// to check which navbar to serve 
+$UserEmail=$_SESSION['UserEmail'];
+$email="select * from userTable where Email='$UserEmail'";
+$qu=mysqli_query($conn,$email);
+$user=mysqli_fetch_assoc($qu);
+$Type=$user['UserType'];
+
+if($Type=='Admin'){include 'navbar-admin.php';}
+else if($Type=='User'){include 'navbar.php';}
+// to check which navbar to serve 
 
 // echo($_SESSION['HospitalName']);
 $hospital=$_SESSION['HospitalName'];
@@ -63,7 +75,7 @@ $query2=mysqli_query($conn, $update_query);
 
 if($query2){
 ?>
-<script>alert("You are now a Successfull donar)");</script>
+<script>alert("You are now A Successfull donar 😎");</script>
 <?php
 }
 else{
@@ -275,7 +287,7 @@ if($iquery){
 	// For both send mail and store data
 	sendMail($email, $patientName, $hospitalName, $blood_group);
 	?>
-	<script>alert("Thanks for Your Valuable donation")</script>
+	<script>alert("Thanks for Your Valuable donation\n Visit the Respective Hospital On Time...")</script>
 	<?php
 }
 }

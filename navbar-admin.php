@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
 <style>
-  .navbar-container #logo {
+  #logo {
   position: absolute;
   top: 5%;
   left: 6%;
@@ -22,12 +22,12 @@
   /* margin-left: 50px; */
 }
 
-.navbar-container #logo > a > img {
+#logo > a > img {
   width: 40%;
 }
   
  /* Navbar styles */
- .navbar-container #nav {
+ #nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -36,24 +36,24 @@
     top: 5%
   }
 
-  .navbar-container #headerl {
+  #headerl {
     display: flex;
     align-items: center;
   }
 
-  .navbar-container #headerl ul {
+  #headerl ul {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
-  .navbar-container #headerl li {
+  #headerl li {
     margin: 0 10px;
     /* font-family: "Neuton", serif; */
   }
 
-  .navbar-container #headerl a {
+  #headerl a {
     color: black;
     font-size: 22px;
     font-weight: bold;
@@ -64,11 +64,11 @@
 
   }
 
-  .navbar-container #headerl a:hover {
+  #headerl a:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  .navbar-container #headerl i {
+  #headerl i {
   margin-right: 10px;
   font-size: 20px; /* Increase the font size */
   cursor: pointer;
@@ -201,48 +201,30 @@
 </head>
 
 
-<body class="navbar-page">
-<div class="navbar-container">
+<body>
+  
 <div id="logo">
-    <a href="index-user.php"><img src="./Images/Logo.png"></a>
+    <a href="index.php"><img src="./Images/Logo.png"></a>
   </div>
   <div id="nav">
     <div class="header-list" id="headerl">
       <!-- <i class="fa fa-times" onclick="hideMenu()"></i> -->
       <ul>
-        <?php
-// include 'connect.php';
-// include 'navbar.php';
-// $hospital=$_SESSION['HospitalName'];
-
-// to check which navbar to serve 
-$UserEmail=$_SESSION['UserEmail'];
-$email="select * from userTable where Email='$UserEmail'";
-$qu=mysqli_query($conn,$email);
-$user=mysqli_fetch_assoc($qu);
-$Type=$user['UserType'];
-
-if($Type=='User'){
-  ?>
-<li><a href="index-user.php"><i class="fa fa-home"></i></a></li>
-  <?php }
-  else{
-    ?>
-    <li><a href="index-admin.php"><i class="fa fa-home"></i></a></li>
-    <?php
-  }
-
-    ?>
-        <!-- <li><a href="index-admin.php"><i class="fa fa-home"></i></a></li> -->
-        <li><a class="scroll" href="./index-user.php#about-us">About Us</a></li>
-        <li><a href="./index-user.php#vol-sect" target="">Admin</a></li>
+      <li><a href="index-admin.php"><i class="fa fa-home"></i></a></li>
+        <li><a class="scroll" href="./index-admin.php#about-us">About Us</a></li>
+        <li><a href="./index-admin.php#vol-sect" target="">Admin</a></li>
         <li><a href="donate.html" target="">Donate</a></li>
         <li><a href="donate.html" target="">Request</a></li>
-        <li><a  href="camptable.php">Camps</a></li>
+        <li><a href="HospitalList.php" target="">Hospital List</a></li>
+        <li><a href="history.php" target="">History</a></li>
+        <li><a  href="addCamp.php">Camps</a></li>
+
+        <!-- <li><a target="_blank" href="camptable.php">Camps</a></li> -->
         <li><a href="help.php" target="">Get Help</a></li>
         <!-- <li><a href="#" id="profile-icon" onclick="openSidebar()"><i class="fa-solid fa-user"></i></a></li> -->
         <li class="icon"><a href="#" id="profile-icon" onclick="showPopup()"><i class="fas fa-user-circle" style="font-size:30px;"></i></a></li>
         <li><a href="javascript:history.go(-1)"><i class="fa fa-arrow-left"></i></a></li>
+        
       </ul>
     </div>
     <!-- <i class="fa fa-bars" onclick="showMenu()"></i> -->
@@ -272,7 +254,7 @@ if($Type=='User'){
 </div>
 
 	</div>
-</div>
+
 
   <!--  -->
 

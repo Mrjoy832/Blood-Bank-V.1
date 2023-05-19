@@ -34,7 +34,7 @@ header{
 }
 
 .header-logo > img {
-    width: 70%;
+    width: 40%;
 }
 
 .header-list ul li a {
@@ -48,7 +48,7 @@ header{
     letter-spacing: 2px;
     font-weight: 600;
     margin-bottom: 10px;
-    padding: 20px;
+    padding: 10px;
     transition: all ease 0.5s;
 }
 
@@ -57,7 +57,7 @@ header{
     padding-left: 30px;
     padding-top: 30px;
     list-style: none;
-    padding-right: 40px;
+    padding-right: 20px;
 }
 
 header ul li a:hover{
@@ -524,3 +524,9 @@ margin: 0px auto;
     padding-right: 2px;
 }
 }
+
+
+
+
+
+ 

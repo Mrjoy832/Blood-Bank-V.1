@@ -1,3 +1,8 @@
+<?php  
+session_start();
+include 'navbar-admin.php'; ?>
+
+
 <!-- For ADMIN Usage -->
 
 <!DOCTYPE html>

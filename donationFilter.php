@@ -1,9 +1,7 @@
 
-<?php
+<?php 
 session_start();
-include 'navbar-admin.php';
-
-?>
+include 'navbar-admin.php';  ?>
 <html>
     <head>
    
@@ -16,7 +14,6 @@ include 'navbar-admin.php';
         
     
 <style>
-
     table {
   width: 100%;
   border-collapse: collapse;
@@ -88,7 +85,6 @@ tbody tr:nth-child(even) {
 #search-btn:hover {
   background-color: #0062cc;
 }
-
 body{
     background: linear-gradient(to bottom, #fff5f7, #ffedf7);
 
@@ -96,9 +92,7 @@ body{
 
 </style>
     <body>
-    <h1 style="text-align: center;font-family:Neuton,serif;">Blood Transactions</h1>
-          
-          <?php   include 'dropdown.php'; ?>
+    <h1 style="text-align: center;font-family:Neuton,serif;">Blood Donations History</h1>
     <!-- <div class="search-bar">
   <input type="text" id="search-input" placeholder="Search hospitals...">
   <button id="search-btn"><i class="fa fa-search"></i></button> -->
@@ -118,7 +112,7 @@ body{
                                 <th>Address</th>
                                 <th>Date of Birth</th>
                                 <th>Hospital Name</th>
-                                <th>Donation/Request</th>
+                                <!-- <th>Donation/Request</th> -->
                                 <th>Amount(in Lt)</th>
                                 <th>Transaction Time</th>
                                
@@ -132,7 +126,7 @@ body{
 
 include 'connect.php';
 
-$select ="select * from bloodtransaction";
+$select ="select * from bloodtransaction where TransactionType='D'";
 $query=mysqli_query($conn,$select);
 $nums=mysqli_num_rows($query);
 
@@ -146,7 +140,7 @@ while($res=mysqli_fetch_array($query)){
     <td><?php echo($res['Address']);  ?></td>
     <td><?php echo($res['DOB']);  ?></td>
     <td><?php echo($res['HospitalName']);  ?></td>
-    <td><?php echo($res['TransactionType']);  ?></td>
+    
     <td><?php echo($res['Amount']);  ?></td>
     <td><?php echo($res['Time']);  ?></td>
     

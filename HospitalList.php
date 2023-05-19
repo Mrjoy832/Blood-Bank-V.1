@@ -1,4 +1,6 @@
-
+<?php 
+session_start();
+include 'navbar-admin.php'; ?>
 
 <html>
     <head>
@@ -83,10 +85,18 @@ tbody tr:nth-child(even) {
 #search-btn:hover {
   background-color: #0062cc;
 }
+body{
+    background: linear-gradient(to bottom, #fff5f7, #ffedf7);
+
+}
+
+/* edit button popup styling */
+
 
 </style>
+
     <body>
-          <h1>List of Hospital</h1>
+    <h1 style="text-align: center;font-family:Neuton,serif; font-size:40px;">Hospital &nbsp;&nbsp;Lists</h1>
     <div class="search-bar">
   <input type="text" id="search-input" placeholder="Search hospitals...">
   <button id="search-btn"><i class="fa fa-search"></i></button>
@@ -142,8 +152,14 @@ while($res=mysqli_fetch_array($query)){
     <td><?php echo($res['Stock-O-']);  ?></td>
     <td><?php echo($res['Stock-AB+']);  ?></td>
     <td><?php echo($res['Stock-AB-']);  ?></td>
-    <td><i class="fa fa-edit" aria-hidden="true"></i></td>
-    <td><i class="fa fa-trash" aria-hidden="true"></i></td>
+    <td>
+    <a href="./HospitalList1.php?Hospitals=<?php echo($res['HospitalName']);?>" 
+        onclick="window.open('./HospitalList1.php?Hospitals=<?php echo($res['HospitalName']);?>', 'Hospital List', 'width=450,height=600'); return false;">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+    </a>
+</td>
+  
+<td><a href="deletehospital.php?Hospital=<?php echo($res['HospitalName']);?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
     
 </tr>
 <?php
@@ -155,12 +171,38 @@ while($res=mysqli_fetch_array($query)){
                            
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
+<!-- PHP to update edit button -->
+
+
+
+
+<!--  -->
+
 
 
         <script>
+
+          //edit button js start
+          function Display() {
+            var popup = window.open("./HospitalList1.php", "Popup", "width=800,height=650");
+			popup.focus();
+}
+
+		// function close() {
+		// 	document.getElementById("popupOverlay").style.display = "none";
+		// 	document.getElementById("popup-new").style.display = "none";
+		// }
+    // $("#closeButton").click(function() {
+    //         $(".popupOverlay").hide();
+    //         $(".popup-new").hide();
+    //     });
+          //edit button popup ends
+
+
           // Only to search hospital 
 $("#search-btn").click(function() {
   var searchTerm = $("#search-input").val().toLowerCase();
@@ -186,6 +228,12 @@ $("#search-btn").click(function() {
     alert("Hospital not found");
   }
 });
+
+
+// JS code for the edit popup
+
+
+
         </script>
     </body>
 </html>

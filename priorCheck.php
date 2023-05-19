@@ -1,3 +1,24 @@
+<?php
+session_start();
+// include 'navbar-admin.php';
+// session_start();
+// include 'connect.php';
+// // include 'navbar.php';
+// $hospital=$_SESSION['HospitalName'];
+
+// // to check which navbar to serve 
+// $UserEmail=$_SESSION['UserEmail'];
+// $email="select * from userTable where Email='$UserEmail'";
+// $qu=mysqli_query($conn,$email);
+// $user=mysqli_fetch_assoc($qu);
+// $Type=$user['UserType'];
+
+// if($Type=='Admin'){include 'navbar-admin.php';}
+// else if($Type=='User'){include 'navbar.php';}
+// to check which navbar to serve 
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,12 +86,13 @@
   cursor: pointer;
 }
 
-a {
+ #pop{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
-  font-size: 50px;
+  width:900px;
+  font-size: 40px;
   color: white;
   background-color: red;
   text-decoration: none;
@@ -80,11 +102,53 @@ a {
   /* text-transform: uppercase; */
 }
 
+.home  #home-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+
+
         
 	</style>
 </head>
 <body>
-	<a href="#" onclick="showPopup()">Check If You are eligible to donate or Not?</a>
+	
+<div class="home">
+<?php
+	
+	include 'connect.php';
+	// include 'navbar.php';
+	// $hospital=$_SESSION['HospitalName'];
+	
+	// to check which navbar to serve 
+	$UserEmail=$_SESSION['UserEmail'];
+	$email="select * from userTable where Email='$UserEmail'";
+	$qu=mysqli_query($conn,$email);
+	$user=mysqli_fetch_assoc($qu);
+	$Type=$user['UserType'];
+	if($Type=='User'){?>
+	<button id="home-button" ><a href="index-user.php" style="text-decoration:none;color: white;"> Home</a></button>
+	<?php
+	}
+
+	else{?>
+		<button id="home-button" ><a href="index-admin.php" style="text-decoration:none;color: white;"> Home</a></button>
+<?php
+	}
+	
+?>
+</div>
+
+	<a href="#" onclick="showPopup()" id="pop">Check If You are eligible to donate or Not?</a>
 	<div class="popup-overlay" id="popup-overlay"></div>
 	<div class="popup" id="popup">
 		<span class="close" onclick="closePopup()">&times;</span>
@@ -116,7 +180,7 @@ a {
 		<label class="no" for="malaria_no">&#10060; No</label><br>
 
 
-		<label for="sickle_cell">Malaria:</label>
+		<label for="sickle_cell">sickle_cell:</label>
 		<input type="radio" id="sickle_cell_yes" name="sickle_cell" value="yes">
 		<label class="yes" for="sickle_cell_yes">&#9989; Yes</label>
 		<input type="radio" id="sickle_cell_no" name="sickle_cell" value="no">
@@ -159,7 +223,7 @@ a {
 			}
 			
 			// If all checks pass, the form is valid
-			alert("Thank you for completing the questionnaire. You are eligible to donate blood.");
+			alert("Thank you for completing the questionnaire.\n You are eligible to donate blood.");
 			window.location.href = "./testing.php";
         return false;
 		}

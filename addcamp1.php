@@ -19,13 +19,13 @@
 <body>
     <header>
         <nav>
-            <div class="header-logo"><img src="./Images/Logo.png"></div>
+            <div class="header-logo"><img src="./Images/Logo.png" style="width:40%;"></div>
             <div class="header-list">
                 <ul>
-                    <li><a href="help.html" target="_blank"> Get Help</a></li>
+                    <li><a href="help.php"> Get Help</a></li>
                     <li><a href="donate.html">Donate</a></li>
-                    <li><a href="index.html#vol-sect" target="_blank">Volunteer</a></li>
-                    <li><a href="index.html#about-us" target="_blank">About Us</a></li>
+                    <li><a href="index-admin.php">Home</a></li>
+                    <!-- <li><a href="index.php#about-us">About Us</a></li> -->
                 </ul>
             </div>
         </nav>

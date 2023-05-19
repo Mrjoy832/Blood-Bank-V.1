@@ -1,8 +1,19 @@
 <?php
 session_start();
+include 'connect.php';
+// include 'navbar.php';
 $hospital=$_SESSION['HospitalName'];
 
-include 'connect.php';
+// to check which navbar to serve 
+$UserEmail=$_SESSION['UserEmail'];
+$email="select * from userTable where Email='$UserEmail'";
+$qu=mysqli_query($conn,$email);
+$user=mysqli_fetch_assoc($qu);
+$Type=$user['UserType'];
+
+if($Type=='Admin'){include 'navbar-admin.php';}
+else if($Type=='User'){include 'navbar.php';}
+// to check which navbar to serve 
 
 $stock_search=" select * from hospitallisttable where HospitalName= '$hospital'";
 $query=mysqli_query($conn, $stock_search);
@@ -71,7 +82,7 @@ if(isset($_POST['SUBMIT'])) {
 
     if($query2){
         ?>
-        <script>alert("You are now a Successfull donar)");</script>
+        <script>alert("You Request is in Pending :)");</script>
         <?php
     }
     else{
@@ -180,42 +191,42 @@ form input[type=number] {
 
 /* Emojis */
 td#a+::after {
-  content: "\1F4A5";
+  /* content: "\1F4A5"; */
   margin-left: 10px;
 }
 
 td#a-::after {
-  content: "\1F4A6";
+  /* content: "\1F4A6"; */
   margin-left: 10px;
 }
 
 td#b+::after {
-  content: "\1F4A7";
+  /* content: "\1F4A7"; */
   margin-left: 10px;
 }
 
 td#b-::after {
-  content: "\1F4A8";
+  /* content: "\1F4A8"; */
   margin-left: 10px;
 }
 
 td#ab+::after {
-  content: "\1F4A9";
+  /* content: "\1F4A9"; */
   margin-left: 10px;
 }
 
 td#ab-::after {
-  content: "\1F4AA";
+  /* content: "\1F4AA"; */
   margin-left: 10px;
 }
 
 td#o+::after {
-  content: "\1F4AB";
+  /* content: "\1F4AB"; */
   margin-left: 10px;
 }
 
 td#o-::after {
-  content: "\1F480";
+  /* content: "\1F480"; */
   margin-left: 10px;
 }
 
@@ -224,52 +235,52 @@ td#o-::after {
 </head>
 <body>
 	<h1>Blood Donation Stock Update</h1>
-	<p>Welcome to the Blood Donation Stock Update page for <?php echo($_SESSION['HospitalName']); ?></p>
+	<p style="text-align: center;font-family:Neuton,serif; font-size:25px;">Welcome to the Blood Donation Stock Update page for "<?php echo($_SESSION['HospitalName']); ?>"</p>
     <table>
         <thead>
             <tr>
                 <th>Blood Group</th>
-                <th>Stock (in Lt)</th>
+                <th>Stock (in Unit)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>A+</td>
-                <td id="a+" name="apos"><b><?php echo($Apos); ?></b></td>
+                <td><b>A+</b></td>
+                <td id="a+" name="apos"><b><?php echo($Apos);?></b></td>
             </tr>
             <tr>
-                <td>A-</td>
-                <td id="a-" name="aneg"><b><?php echo($Aneg); ?></b></td>
+                <td><b>A-</b></td>
+                <td id="a-" name="aneg"><b><?php echo($Aneg);?></b></td>
             </tr>
             <tr>
-                <td>B+</td>
-                <td id="b+" name="bpos"><b><?php echo($Bpos); ?></b></td>
+                <td><b>B+</b></td>
+                <td id="b+" name="bpos"><b><?php echo($Bpos);?></b></td>
             </tr>
             <tr>
-                <td>B-</td>
-                <td id="b-" name="bneg"><b><?php echo($Bneg); ?></b></td>
+                <td><b>B-</b></td>
+                <td id="b-" name="bneg"><b><?php echo($Bneg);?></b></td>
             </tr>
             <tr>
-                <td>AB+</td>
-                <td id="ab+" name="abpos"><b><?php echo($ABpos); ?></b></td>
+                <td><b>AB+</b></td>
+                <td id="ab+" name="abpos"><b><?php echo($ABpos);?></b></td>
             </tr>
             <tr>
-                <td>AB-</td>
-                <td id="ab-" name="abneg"><b><?php echo($ABneg); ?></b></td>
+                <td><b>AB-</b></td>
+                <td id="ab-" name="abneg"><b><?php echo($ABneg);?></b></td>
             </tr>
             <tr>
-                <td>O+</td>
-                <td id="o+" name="opos"><b><?php echo($Opos); ?></b></td>
+                <td><b>O+</b></td>
+                <td id="o+" name="opos"><b><?php echo($Opos);?></b></td>
             </tr>
             <tr>
-                <td>O-</td>
-                <td id="o-" name="oneg"><b><?php echo($Oneg); ?></b></td>
+                <td><b>O-</b></td>
+                <td id="o-" name="oneg"><b><?php echo($Oneg);?></b></td>
             </tr>
         </tbody>
     </table>
     
     <h2>Request Blood</h2>
-    <p>Please enter the amount of blood you need (in Lt) for a particular blood group:</p>
+    <p><b>Please enter the amount of blood you need (in Unit) for a particular blood group:</b></p>
     <form id="blood-form" method="POST">
         <label for="blood-group">Blood Group:</label>
         <select id="blood-group" name="blood_group">
@@ -283,7 +294,7 @@ td#o-::after {
             <option value="o-">O-</option>
         </select><br><br>
     
-        <label for="amount">Amount (in Lt):</label>
+        <label for="amount">Amount (in Unit):</label>
         <input type="number" id="amount" name="amount" min="1" max="1000" required><br><br>
     
         <input type="submit" value="Submit" name="SUBMIT">
@@ -343,7 +354,7 @@ if($iquery){
 	// For both send mail and store data
 	sendMail($name,$email,$phone,$address,$dob,$hospital,$blood_group,$amount);
 	?>
-	<script>alert("Your Request is Approved...")</script>
+	<script>alert("Your Request is Approved...\nEmail is sent to the Respective Hospital :)\nThanks for Choosing Us! ")</script>
 	<?php
 }
 

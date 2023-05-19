@@ -25,10 +25,10 @@
     <div class="header-logo"><img src="./Images/Logo.png"></div>
     <div class="header-list">
         <ul>
-            <li><a href="help.html">Get Help</li></a>
+            <li><a href="help.php">Get Help</li></a>
             <li><a href="donate.html">Donate</li></a>
-            <li><a href="index.php#vol-sect">Volunteer</li></a>
-            <li><a href="index.php#about-us">About Us</a></li>
+            <li><a href="index-user.php#vol-sect">Volunteer</li></a>
+            <li><a href="index-user.php#about-us">About Us</a></li>
             </ul>
     </div>
     </nav>
@@ -65,7 +65,7 @@
             <div class="action-btn">
                 <button class="btn primary" name="REGISTER">Create Account</button>
                 
-                <a href="Login.php" class="hero-btn btn" target="">Login</a>
+                <a href="index.php" class="hero-btn btn" target="">Login</a>
             </div>
         </form>
     </div>

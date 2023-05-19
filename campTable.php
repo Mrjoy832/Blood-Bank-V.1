@@ -1,4 +1,19 @@
+<?php  session_start();
+include 'connect.php';
+// include 'navbar.php';
+// $hospital=$_SESSION['HospitalName'];
 
+// to check which navbar to serve 
+$UserEmail=$_SESSION['UserEmail'];
+$email="select * from userTable where Email='$UserEmail'";
+$qu=mysqli_query($conn,$email);
+$user=mysqli_fetch_assoc($qu);
+$Type=$user['UserType'];
+
+if($Type=='Admin'){include 'navbar-admin.php';}
+else if($Type=='User'){include 'navbar.php';}
+// to check which navbar to serve 
+ ?>
 <!-- For Normal Users -->
 
 <!DOCTYPE html>

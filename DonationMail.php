@@ -18,10 +18,10 @@ function sendMail($email, $patientName, $hospitalName, $blood_group) {
     $mail->Port= 465;
     $mail->SMTPSecure='ssl';
     $mail->isHTML(true);
-    $mail->setFrom($email,$patientName);
+    $mail->setFrom($email ,$patientName);
     $mail->addAddress('bloodbank832@gmail.com');
-    $mail->Subject=("$email ($hospitalName)");
-    $mail->Body= $blood_group;
+    $mail->Subject=("Blood Donation from $patientName in Your hospital -- ($hospitalName) ");
+    $mail->Body= ("Name:$patientName <br> Email: $email <br> Blood-Grp:$blood_group ");
     $mail->send();
 }
 

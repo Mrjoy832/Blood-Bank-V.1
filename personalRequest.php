@@ -1,6 +1,20 @@
 <?php
-// session_start();
-include 'navbar.php';
+session_start();
+include 'connect.php';
+// include 'navbar.php';
+// $hospital=$_SESSION['HospitalName'];
+
+
+// to check which navbar to serve 
+$UserEmail=$_SESSION['UserEmail'];
+$email="select * from userTable where Email='$UserEmail'";
+$qu=mysqli_query($conn,$email);
+$user=mysqli_fetch_assoc($qu);
+$Type=$user['UserType'];
+
+if($Type=='Admin'){include 'navbar-admin.php';}
+else if($Type=='User'){include 'navbar.php';}
+// to check which navbar to serve 
 ?>
 
 <html>
@@ -86,10 +100,13 @@ tbody tr:nth-child(even) {
 #search-btn:hover {
   background-color: #0062cc;
 }
+body{
+    background: linear-gradient(to bottom, #fff5f7, #ffedf7);
 
+}
 </style>
     <body>
-          <h1><?php echo $_SESSION['NameToDisplay']?>'s Donation History</h1>
+          <h1 style="text-align: center;font-family:Neuton,serif; font-size:40px;"><?php echo $_SESSION['NameToDisplay']?>'s Request History</h1>
     <!-- <div class="search-bar">
   <input type="text" id="search-input" placeholder="Search hospitals...">
   <button id="search-btn"><i class="fa fa-search"></i></button> -->
@@ -110,7 +127,7 @@ tbody tr:nth-child(even) {
                                 <th>Date of Birth</th>
                                 <th>Hospital Name</th>
                                 <th>Donation/Request</th>
-                                <th>Amount(in Lt)</th>
+                                <th>Amount(in Unit)</th>
                                 <th>Transaction Time</th>
                                
                                 <!-- <th colspan="2">Update</th> -->

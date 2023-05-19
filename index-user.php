@@ -2,6 +2,12 @@
 <?php
 
 session_start();
+// Check if the session variable exists or not
+if (!isset($_SESSION['NameToDisplay'])) {
+    // If the session variable does not exist, display the alert and redirect to the login page
+    echo '<script>alert("You are logged out."); window.location.href = "index.php";</script>';
+    exit(); // Terminate the script execution
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +25,7 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Add this line to set the zoom size to 80% -->
     <!-- <style>body {zoom: 95%;}</style> -->
+
     <style>
         /* style only for the Profile Page  */
         .popup {
@@ -150,39 +157,49 @@ session_start();
     <!--Scroll to top button-->
     <button onclick="topFunction()" id="myBtn" class="fas fa-arrow-up"></button>
     <!-- Home Page -->
-    <header>
-        <video autoplay muted loop plays-inline id="homevideo">
-            <source src="./video/homevideo1.mp4" type="video/mp4">
-        </video>
-        <div id="logo"> <a href="index.html"><img src="./Images/Logo.png"></a>
-        </div>
-        <div id="nav">
-            <div class="header-list" id="headerl">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-                <ul>
-                    <li><a class="scroll" href="#about-us">About Us</a></li>
-                    <li><a href="#vol-sect" target="">Admin</a></li>
-                    <li><a href="donate.html" target="">Donate</a></li>
-                    <li><a href="donate.html" target="">Request</a></li>
-                    <li><a href="HospitalList.php" target="">Hospital List</a></li>
-                    <li><a   href="addCamp.php">Camps</a></li>
-                    <li><a href="history.php" target="">History</a></li>
-                    <li><a href="#" id="profile-icon" onclick="showPopup()"><i class="fas fa-user-circle"></i></a></li>
 
-                </ul>
-            </div>
-            <i class="fa fa-bars" onclick="showMenu()"></i>
-        </div>
-        <div class="text-box">
-            <h1> Start </h1>
-            <h1>Saving Lives </h1>
-            <br>
-            <p>Become a donor or request for blood And help save lives ..</p>
-            <a href='search.php' class="hero-btn">DONATE</a>
-            <!-- To display dynamic name from login page  -->
-            <h2 style="color:red;font-size:32px;font-family:'Courier New', Courier, monospace;font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Welcome Admin..<?php echo " ".$_SESSION['NameToDisplay']." ";?> to the portal :)</h2>
-        </div>
-    </header>
+
+    <header>
+  <video autoplay muted loop plays-inline id="homevideo">
+    <source src="./video/homevideo1.mp4" type="video/mp4">
+  </video>
+  <div id="logo">
+    <a href="index.html"><img src="./Images/Logo.png"></a>
+  </div>
+  <div id="nav">
+    <div class="header-list" id="headerl">
+      <i class="fa fa-times" onclick="hideMenu()"></i>
+      <ul>
+        <li><a class="scroll" href="#about-us">About Us</a></li>
+        <li><a href="#vol-sect" target="">Admin</a></li>
+        <li><a href="donate.html" target="">Donate</a></li>
+        <li><a href="donate.html" target="">Request</a></li>
+        <li><a  href="camptable.php">Camps</a></li>
+        <li><a href="help.php" target="">Get Help</a></li>
+        <li><a href="#" id="profile-icon" onclick="showPopup()"><i class="fas fa-user-circle"></i></a></li>
+        <!-- <li><a href="logout.php" id="profile-icon"><i class="fas fa-user-circle"></i></a></li> -->
+      </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+  </div>
+  <div class="text-box">
+    <h1> Start </h1>
+    <h1>Saving Lives </h1>
+    <br>
+    <p>Become a donor or request for blood And help save lives ..</p>
+    <a href='search.php' class="hero-btn">Donate</a>
+    <!-- To display dynamic name from login page  -->
+    <h2 style="color:red;font-size:32px;font-family:'Courier New', Courier, monospace;font-weight:bold;">&nbsp;&nbsp; Welcome <?php echo " ".$_SESSION['NameToDisplay']." ";?> to the portal :)</h2>
+  </div>
+
+
+
+
+  
+
+</header>
+
+
 
     <!--ABOUT US -->
 
@@ -371,8 +388,9 @@ session_start();
         </div>
     </footer>
 
-    <!-- profile side bar -->
-    <div class="popup-overlay" id="popup-overlay"></div>
+    
+   <!-- profile side bar -->
+   <div class="popup-overlay" id="popup-overlay"></div>
 	<div class="popup" id="popup">
 		<span class="close" onclick="closePopup()">&times;</span>
 		<div class="profile-sidebar">
@@ -389,19 +407,44 @@ session_start();
   <div class="profile-buttons">
     <a href="./personalDonation.php" onclick="closeProfileBar()" class="donate-history-btn" style="text-decoration:none;">Donate History</a>
     <a href="./personalRequest.php" class="request-history-btn" style="text-decoration:none;">Request History</a>
-    <a href="./index.php" class="logout-btn" style="text-decoration:none;">Logout</a>
+    <a href="./logout.php" class="logout-btn" style="text-decoration:none;">Logout</a>
   </div>
 </div>
 
 	</div>
 <!-- Profile page sidebar HTML -->
 
-
     <!--Javascript for pre-loader-->
 
+
+
+
+      <!-- sidebar -->
+<!-- <div class="sidebar" id="sidebar">
+		<div class="sidebar-wrapper">
+			<div class="profile-details">
+				<div class="profile-icon" onclick="closeSidebar()">
+					<i class="fas fa-user fa-3x"></i>
+				</div>
+				<h2>Your Profile Details</h2>
+				<p>Name: John Doe</p>
+				<p>Email: johndoe@example.com</p>
+				<p>Phone: 123-456-7890</p>
+			</div>
+			<div class="buttons">
+				<button>Update Profile</button>
+				<button>Logout</button>
+			</div>
+			<div class="close-btn">
+				<button onclick="closeSidebar()">&times;</button>
+			</div>
+		</div>
+	</div> -->
+
     <script>
-        // Profile page Side bar js 
-           function closeProfileBar() {
+
+         // Profile page Side bar js 
+         function closeProfileBar() {
   window.close();
 }
 
@@ -415,8 +458,6 @@ session_start();
 			document.getElementById("popup").style.display = "none";
 		}
 // profile page sidebar closes
-
-        // 
         const preloader = document.querySelector('.preloader');
         const fadeEffect = setInterval(() => {
             if (!preloader.style.opacity) {
@@ -444,11 +485,35 @@ session_start();
         function hideMenu() {
             headerl.style.right = "-210px";
         }
+
+// sidebar
+      
+
     </script>
 
 
     <!--js for scroll effects-->
     <script src="scroll.js"></script>
+
+
+
+
+
+    
+
+    <!-- side bar js -->
+    <!-- <script>
+        function openSidebar() {
+  document.getElementById("sidebar").style.right = "0";
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").style.right = "-250px";
+}
+    </script> -->
+
+
+
 
 </body>
 

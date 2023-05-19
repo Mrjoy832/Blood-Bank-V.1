@@ -1,4 +1,4 @@
-
+<?php session_start(); ?>
 
 
 <!DOCTYPE html>
@@ -18,9 +18,30 @@
     font-size: 16px;
   }
 </style>
-	<!-- Home button html -->
-	<button id="home-button" onclick="location.href='index.php';">Home</button>
 
+<?php
+	
+	include 'connect.php';
+	// include 'navbar.php';
+	// $hospital=$_SESSION['HospitalName'];
+	
+	// to check which navbar to serve 
+	$UserEmail=$_SESSION['UserEmail'];
+	$email="select * from userTable where Email='$UserEmail'";
+	$qu=mysqli_query($conn,$email);
+	$user=mysqli_fetch_assoc($qu);
+	$Type=$user['UserType'];
+	if($Type=='User'){?>
+	<button id="home-button" ><a href="index-user.php" style="text-decoration:none;color: white;"> Home</a></button>
+	<?php
+	}
+
+	else{?>
+		<button id="home-button" ><a href="index-admin.php" style="text-decoration:none;color: white;"> Home</a></button>
+<?php
+	}
+	
+?>
 
 <head>
 	<title>Nearest Hospitals</title>
@@ -345,7 +366,7 @@ body{
 
 	<!-- disclaimer -->
 	<div style="font-size: 15px; text-align: center; margin-top: 50px; padding:10px;">
-    <p style="color:blue;"><b style="color:black;">**Disclaimer:</b> This website is for informational purposes only advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified healthcare provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this website.</p>
+    <p style="color:blue;"><b style="color:black;">**Disclaimer:</b> This website is for informational purposes only.As a student we dont have access in real data of Blood Stocks and Also Our current prototype model is restricted to the Hospitals <b>East Medinipur,West Medinipur</b> only.</p>
 </div>
 
 </body>
