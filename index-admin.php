@@ -2,6 +2,12 @@
 <?php
 
 session_start();
+// Check if the session variable exists or not
+if (!isset($_SESSION['NameToDisplay'])) {
+    // If the session variable does not exist, display the alert and redirect to the login page
+    echo '<script>alert("You are logged out."); window.location.href = "index.php";</script>';
+    exit(); // Terminate the script execution
+}
 ?>
 
 <!DOCTYPE html>

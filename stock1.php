@@ -235,7 +235,7 @@ td#o-::after {
 </head>
 <body>
 	<h1>Blood Donation Stock Update</h1>
-	<p style="text-align: center;font-family:Neuton,serif; font-size:25px;">Welcome to the Blood Donation Stock Update page for "<?php echo($_SESSION['HospitalName']); ?>"</p>
+	<p style="text-align: center;font-family:Neuton,serif; font-size:25px;">Welcome to the Blood Donation Stock Update page for <b> "<?php echo($_SESSION['HospitalName']); ?>"</b></p>
     <table>
         <thead>
             <tr>
@@ -279,9 +279,9 @@ td#o-::after {
         </tbody>
     </table>
     
-    <h2>Request Blood</h2>
-    <p><b>Please enter the amount of blood you need (in Unit) for a particular blood group:</b></p>
-    <form id="blood-form" method="POST">
+    <h2 style="text-align: center;">Request Blood</h2>
+    <p style="text-align: center;"><b>Please enter the amount of blood you need (in Unit) for a particular blood group:</b></p>
+    <form id="blood-form" method="POST" style="text-align: center;">
         <label for="blood-group">Blood Group:</label>
         <select id="blood-group" name="blood_group">
             <option value="a+">A+</option>

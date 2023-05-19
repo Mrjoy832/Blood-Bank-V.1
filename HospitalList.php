@@ -98,6 +98,14 @@ body{
     <body>
     <h1 style="text-align: center;font-family:Neuton,serif; font-size:40px;">Hospital &nbsp;&nbsp;Lists</h1>
     <div class="search-bar">
+
+    <!-- button to add hospitals -->
+    <button id="add-hospital-btn" style="margin-right: 10px; background-color: #28a745; color: #fff; border: none; border-radius: 5px; padding: 8px 12px; font-size: 16px; cursor: pointer;" onclick="openWindow()">
+  <i class="fas fa-hospital" style="margin-right: 5px;"></i> ADD Hospital
+</button>
+
+
+
   <input type="text" id="search-input" placeholder="Search hospitals...">
   <button id="search-btn"><i class="fa fa-search"></i></button>
   <!-- <div id="suggestions"></div> -->
@@ -192,6 +200,9 @@ while($res=mysqli_fetch_array($query)){
 			popup.focus();
 }
 
+function openWindow() {
+    window.open("./hospitaladd.php", "Popup", "width=450,height=600");
+  }
 		// function close() {
 		// 	document.getElementById("popupOverlay").style.display = "none";
 		// 	document.getElementById("popup-new").style.display = "none";
